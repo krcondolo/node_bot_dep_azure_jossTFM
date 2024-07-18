@@ -9,7 +9,7 @@ class MyBot extends ActivityHandler {
 
         this.onMessage(async (context, next) => {
             const userMessage = context.activity.text;
-            
+
             // Consulta a la base de datos
             const request = new sql.Request();
             const result = await request.query(`SELECT respuesta FROM preguntas WHERE pregunta = '${userMessage}'`);
