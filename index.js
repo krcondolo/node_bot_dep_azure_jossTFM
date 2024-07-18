@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const { BotFrameworkAdapter, MemoryStorage, ConversationState, UserState } = require('botbuilder');
 const { sqlConfig } = require('./config');
@@ -7,11 +8,8 @@ const { MyBot } = require('./bot'); // Importar el bot
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Crear el adaptador
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword
-});
+// Crear el adaptador sin autenticación
+const adapter = new BotFrameworkAdapter();
 
 // Crear almacenamiento de estados
 const memoryStorage = new MemoryStorage();
@@ -19,7 +17,7 @@ const conversationState = new ConversationState(memoryStorage);
 const userState = new UserState(memoryStorage);
 
 // Inicializar el bot
-const myBot = new MyBot(conversationState, userState); 
+const myBot = new MyBot(conversationState, userState);
 
 // Middleware para manejar las solicitudes
 app.post('/api/messages', (req, res) => {
