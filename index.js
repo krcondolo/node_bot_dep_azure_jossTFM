@@ -26,6 +26,11 @@ app.post('/api/messages', (req, res) => {
     });
 });
 
+// Ruta para manejar GET en la raíz
+app.get('/', (req, res) => {
+    res.send('El bot está funcionando correctamente.');
+});
+
 // Iniciar el servidor
 app.listen(port, () => {
     console.log(`Servidor iniciado en http://localhost:${port}`);
