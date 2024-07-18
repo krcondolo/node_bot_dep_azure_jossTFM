@@ -12,7 +12,7 @@ class MyBot extends ActivityHandler {
 
             // Consulta a la base de datos
             const request = new sql.Request();
-            const result = await request.query(`SELECT respuesta FROM preguntas WHERE pregunta = '${userMessage}'`);
+            const result = await request.query(`SELECT Respuesta FROM data_bot WHERE Pregunta = '${userMessage}'`);
 
             if (result.recordset.length > 0) {
                 await context.sendActivity(result.recordset[0].respuesta);

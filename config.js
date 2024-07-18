@@ -1,9 +1,9 @@
 module.exports = {
     sqlConfig: {
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-        server: process.env.DB_SERVER,
-        database: process.env.DB_NAME,
+        user: "cef",
+        password: "Big@Data2024",
+        server: "srvtfmsql.database.windows.net",
+        database: "josstFM",
         options: {
             encrypt: true, // Use este campo si está utilizando Azure
             enableArithAbort: true
