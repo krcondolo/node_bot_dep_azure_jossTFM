@@ -9,7 +9,10 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Crear el adaptador sin autenticación
-const adapter = new BotFrameworkAdapter();
+const adapter = new BotFrameworkAdapter({
+    appId: process.env.MicrosoftAppId,
+    appPassword: process.env.MicrosoftAppPassword
+});
 
 // Crear almacenamiento de estados
 const memoryStorage = new MemoryStorage();
@@ -20,8 +23,9 @@ const userState = new UserState(memoryStorage);
 const myBot = new MyBot(conversationState, userState);
 
 // Middleware para manejar las solicitudes
-app.post('/api/messages', (req, res) => {
-    adapter.processActivity(req, res, async (context) => {
+app.post('/api/messages', async (req, res) => {
+    console.log('Actividad entrante:', req.body); // Imprimir la actividad entrante
+    await adapter.processActivity(req, res, async (context) => {
         await myBot.run(context);
     });
 });
