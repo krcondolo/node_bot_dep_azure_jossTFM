@@ -9,10 +9,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 
 // Crear el adaptador sin autenticación
-const adapter = new BotFrameworkAdapter({
-    appId: process.env.MicrosoftAppId,
-    appPassword: process.env.MicrosoftAppPassword
-});
+const adapter = new BotFrameworkAdapter();
 
 // Crear almacenamiento de estados
 const memoryStorage = new MemoryStorage();
